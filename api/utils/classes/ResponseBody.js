@@ -17,6 +17,10 @@ class ResponseBody {
   setPayload({ key, value }) {
     this.payload[key] = value;
   }
+
+  removePayload() {
+    delete this.payload;
+  }
 }
 
 module.exports = ResponseBody;
