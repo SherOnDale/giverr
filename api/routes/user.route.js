@@ -7,3 +7,5 @@ router
   .route('/')
   .get(userController.read)
   .post(userController.create);
+
+module.exports = router;
