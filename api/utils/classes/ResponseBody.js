@@ -1,4 +1,4 @@
-class Response {
+class ResponseBody {
   constructor() {
     this.error = true;
     this.message =
@@ -19,4 +19,4 @@ class Response {
   }
 }
 
-module.exports = Response;
+module.exports = ResponseBody;
