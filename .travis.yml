@@ -7,10 +7,10 @@ script:
 
 after_success:
   - docker build -t sherondale/giverr-nginx ./nginx
-  - docker build -t sherondale/giverr-server ./server
+  - docker build -t sherondale/giverr-api ./api
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   - docker push sherondale/giverr-nginx
-  - docker push sherondale/giverr-server
+  - docker push sherondale/giverr-api
 
 deploy:
   provider: elasticbeanstalk
