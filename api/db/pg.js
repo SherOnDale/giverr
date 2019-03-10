@@ -13,12 +13,6 @@ const pg = new Pool({
   port: process.env.PG_PORT
 });
 
-pg.connect((error, client, done) => {
-  if (error) console.log(error);
-  console.log('connected successfully');
-  done();
-});
-
 pg.on('error', () => console.log('Lost connection to the database'));
 
 pg.query(

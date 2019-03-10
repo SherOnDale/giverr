@@ -15,11 +15,12 @@ controller.create = (req, res) => {
       console.log(error);
       const responseBody = new ResponseBody();
       if (error) {
+        console.log(error);
         responseBody.setMessage(
           error.message ===
             'duplicate key value violates unique constraint "users_email_key"'
             ? 'Email already exists'
-            : 'Error creating a new user. Please try again later'
+            : error.message
         );
         responseBody.removePayload();
         return res.status(500).json(responseBody);
@@ -36,9 +37,8 @@ controller.read = (req, res) => {
   pg.query('SELECT * FROM users ORDER BY id ASC', (error, users) => {
     const responseBody = new ResponseBody();
     if (error) {
-      responseBody.setMessage(
-        'Error retrieving the users from database. Please try again later'
-      );
+      console.log(error);
+      responseBody.setMessage(error.message);
       responseBody.removePayload();
       return res.status(500).json(responseBody);
     }
@@ -57,9 +57,8 @@ controller.delete = (req, res) => {
     const responseBody = new ResponseBody();
     responseBody.removePayload();
     if (error) {
-      responseBody.setMessage(
-        'Error deleting the table. Please try again alter'
-      );
+      console.log(error);
+      responseBody.setMessage(error.message);
       return res.status(500).json(responseBody);
     }
     responseBody.setSuccess();
