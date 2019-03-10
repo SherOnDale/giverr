@@ -1,5 +1,10 @@
 const Pool = require('pg').Pool;
 
+console.log(process.env.PG_USER);
+console.log(process.env.PG_HOST);
+console.log(process.env.PG_DATABASE);
+console.log(process.env.PG_PASSWORD);
+console.log(process.env.PG_PORT);
 const pg = new Pool({
   user: process.env.PG_USER,
   host: process.env.PG_HOST,
