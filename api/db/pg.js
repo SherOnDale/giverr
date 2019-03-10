@@ -11,7 +11,7 @@ const pg = new Pool({
 pg.on('error', () => console.log('Lost connection to the database'));
 
 pg.query(
-  'CREATE TABLE IF NOT EXISTS users (ID SERIAL PRIMARY KEY, email VARCHAR(30), hash VARCHAR(30))'
+  'CREATE TABLE IF NOT EXISTS users (id serial PRIMARY KEY, email VARCHAR(30) UNIQUE, hash VARCHAR(30))'
 ).catch(error => console.log(error));
 
 module.exports = pg;
