@@ -1,5 +1,7 @@
 version: "3.7"
 services:
+  postgres:
+    image: "postgres:latest"
   nginx:
     restart: always
     build:
@@ -13,3 +15,9 @@ services:
       context: ./api
     volumes:
       - ./api:/app
+    environment:
+      - PG_USER=postgres
+      - PG_HOST=postgres
+      - PG_DATABASE=postgres
+      - PG_PASSWORD=postgres_password
+      - PG_PORT=5432
