@@ -3,7 +3,7 @@ servies:
   - docker
 
 script:
-  - cd api
+  - ls
 
 after_success:
   - docker build -t sherondale/giverr-nginx ./nginx
