@@ -1,0 +1,26 @@
+sudo: required
+servies:
+  - docker
+
+script:
+  - cd api
+
+after_success:
+  - docker build -t sherondale/giverr-nginx ./nginx
+  - docker build -t sherondale/giverr-server ./server
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - docker push sherondale/giverr-nginx
+  - docker push sherondale/giverr-server
+
+deploy:
+  provider: elasticbeanstalk
+  region: us-east-2
+  app: giverr
+  env: Giverr-env
+  bucket_name: elasticbeanstalk-us-east-2-937943321668
+  bucket_path: giverr
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: $AWS_SECRET_KEY
