@@ -6,6 +6,7 @@ const authRoutes = require('./routes/auth.route');
 const app = express();
 
 app.use(helmet());
+app.use(express.json());
 app.use('/user', userRoutes);
 app.use('/auth', authRoutes);
 
